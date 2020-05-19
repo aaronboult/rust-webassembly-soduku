@@ -13,6 +13,43 @@ html, body{
     color: white;
 }
 
+.InfoWrapper{
+    position: absolute;
+    top: 0px;
+    right: 0px;
+}
+
+.InfoHover{
+    border: 1px solid black;
+    border-radius: 100%;
+    background-color: #545454;
+    vertical-align: middle;
+    cursor: pointer;
+    margin: 0.3rem;
+    line-height: 2em;
+    width: 2em;
+    height: 2em;
+}
+
+.Info{
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    margin-top: 2em;
+    margin-right: 2em;
+    background: #464646;
+    border: 1px solid black;
+    border-radius: 2vw 0vw 2vw 2vw;
+    clip-path: circle(0px at top right);
+    transition: clip-path 1s;
+    padding: 0.5em;
+    width: 30vw;
+}
+
+.InfoHover:hover .Info{
+    clip-path: circle(max(100vw, 100vh) at top right);
+}
+
 .SodukuGrid{
     width: 50vw;
     height: 63vh;
