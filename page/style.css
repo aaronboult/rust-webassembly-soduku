@@ -1,0 +1,199 @@
+*{
+    text-align: center;
+    text-align-last: center;
+    user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -webkit-user-select: none;
+    text-align: center;
+}
+
+html, body{
+    background-color: rgb(105, 105, 105);
+    color: white;
+}
+
+.SodukuGrid{
+    width: 50vw;
+    height: 63vh;
+    margin: auto;
+    border: 2px solid black;
+    border-collapse: collapse;
+    display: grid;
+    grid-template-areas: "Block0 Block1 Block2"
+                        "Block3 Block4 Block5"
+                        "Block6 Block7 Block8";
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+}
+
+.SodukuBlock{
+    border: 2px solid black;
+    border-collapse: collapse;
+    display: grid;
+    grid-template-areas: "Cell0 Cell1 Cell2"
+                        "Cell3 Cell4 Cell5"
+                        "Cell6 Cell7 Cell8";
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+}
+
+.SodukuBlock div{
+    border: 1px solid black;
+    border-collapse: collapse;
+    line-height: 6vh;
+    font-size: 1.8em;
+    font-weight: 600;
+}
+
+.SodukuCell:hover:not([lockedCell="true"]){
+    background-color: rgb(231, 231, 231);
+    cursor: pointer;
+}
+
+.Numberpad{
+    height: 20vh;
+    width: 80vw;
+    overflow: auto;
+    margin: auto;
+    margin-top: 4vh;
+    margin-bottom: 3vh;
+    border: 1px solid black;
+    border-collapse: collapse;
+    display: grid;
+    grid-template-areas: "Key_1 Key_2 Key_3"
+                        "Key_4 Key_5 Key_6"
+                        "Key_7 Key_8 Key_9"
+                        "Clear Blank Enter";
+}
+
+.Numberpad div{
+    border: 1px solid black;
+    border-collapse: collapse;
+    line-height: calc(5vh - 4px);
+    vertical-align: middle;
+    cursor: pointer;
+    font-size: 1.5em;
+    font-weight: 600;
+}
+
+.BeginPanel, .EndScreen{
+    position: fixed;
+    color: white;
+    overflow: auto;
+    top: 20vh;
+    left: 20vw;
+    width: 60vw;
+    height: 60vh;
+    padding: min(2vw, 2vh);
+    background-color: rgba(83, 83, 83, 0.925);
+    display: grid;
+}
+
+.EndScreen{
+    grid-template-areas: "Heading Heading Heading"
+                        "Time Blank Lives"
+                        "Restart Restart Restart";
+    grid-template-columns: 5fr 1fr 5fr;
+    grid-template-rows: 8fr 5fr 5fr 8fr;
+}
+
+.EndScreen button{
+    height: 3.5em;
+}
+
+.BeginPanel{
+    grid-template-areas: "Heading Heading Heading"
+                        "Difficulty Difficulty ForceUnique"
+                        "InvalidAnswers Blank1 Highlighting"
+                        "Begin Begin Begin";
+    grid-template-columns: 5fr 1fr 5fr;
+    grid-template-rows: 5fr 10fr 10fr 5fr;
+}
+
+.BeginPanel *, .EndScreen *{
+    margin-bottom: min(2vw, 2vh);
+    font-size: 1.2em;
+}
+
+.BeginPanel h1, .EndScreen h1{
+    font-size: 2.4em;
+}
+
+.SetupBlock, .BeginPanel button, .EndScreen button, .SetupBlock select{
+    width: 70%;
+    margin: auto;
+    display: block;
+}
+
+.SetupBlock input[type="checkbox"]{
+    width: 0.8em;
+    height: 0.8em;
+    margin-left: -2rem;
+}
+
+.Spinner{
+    font-size: 1.2em;
+    margin: auto;
+    width: 3em;
+    height: 3em;
+}
+
+.Highlighted{
+    background-color: aqua !important;
+    color: black;
+}
+
+.SelectedCell{
+    background-color: rgb(255, 255, 126) !important;
+    color: black;
+}
+
+.Incorrect{
+    background-color: rgb(255, 133, 133);;
+}
+
+@media screen and (max-width: 1200px){
+
+    .SodukuGrid{
+        width: 55vw;
+    }
+
+}
+
+@media screen and (max-width: 1000px){
+
+    .SodukuGrid{
+        width: 60vw;
+    }
+
+}
+
+@media screen and (max-width: 745px){
+
+    .SodukuGrid{
+        width: 90vw;
+    }
+
+}
+
+@media screen and (max-width: 1300px){
+
+    .BeginPanel{
+        width: 80vw;
+        left: 10vw;
+        grid-template-areas: "Heading"
+                            "Difficulty"
+                            "InvalidAnswers"
+                            "Highlighting"
+                            "ForceUnique"
+                            "Begin";
+        grid-template-columns: 1fr;
+        grid-template-rows: 5fr 7fr 7fr 7fr 7fr 5fr;
+    }
+
+    .SetupBlock, .BeginPanel button, .SetupBlock select{
+        width: 80%;
+    }
+
+}

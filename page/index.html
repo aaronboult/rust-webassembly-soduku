@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.5.0.min.js" integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ=" crossorigin="anonymous"></script>
+    <script src="soduku_webassembly.js"></script>
+    <script type="module">
+        const { generate_grid } = wasm_bindgen;
+        async function load () {
+            await wasm_bindgen("webassembly.wasm");
+            window.generate_grid = generate_grid;
+        }
+        load();
+    </script>
+    <script src="page.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <title>Soduku</title>
+</head>
+<body>
+    <div style="height: 10vh;">
+        <h1>Soduku</h1>
+    </div>
+    <div class="SodukuGrid" id="SodukuGrid"></div>
+    <div id="Numberpad" class="Numberpad" style="display: none;">
+        <div onclick="Numberpad(event, 1);" style="grid-area: Key_1;">1</div>
+        <div onclick="Numberpad(event, 2);" style="grid-area: Key_2;">2</div>
+        <div onclick="Numberpad(event, 3);" style="grid-area: Key_3;">3</div>
+        <div onclick="Numberpad(event, 4);" style="grid-area: Key_4;">4</div>
+        <div onclick="Numberpad(event, 5);" style="grid-area: Key_5;">5</div>
+        <div onclick="Numberpad(event, 6);" style="grid-area: Key_6;">6</div>
+        <div onclick="Numberpad(event, 7);" style="grid-area: Key_7;">7</div>
+        <div onclick="Numberpad(event, 8);" style="grid-area: Key_8;">8</div>
+        <div onclick="Numberpad(event, 9);" style="grid-area: Key_9;">9</div>
+        <div style="grid-area: Blank;"></div>
+        <div id="NumpadClear" onclick="Numberpad(event, -1);" style="grid-area: Clear;">Clear</div>
+        <div id="NumpadEnter" onclick="Numberpad(event, -2);" style="grid-area: Enter;">Enter</div>
+    </div>
+    <div class="BeginPanel" id="BeginPanel">
+        <h1 style="grid-area: Heading;">Setup Panel</h1>
+        <div class="SetupBlock" style="grid-area: Difficulty;">
+            <h5>Select Difficulty</h5>
+            <select id="Difficulty" class="form-control-lg">
+                <option value="33">Very Very Easy</option>
+                <option value="31">Very Easy</option>
+                <option value="28">Easy</option>
+                <option value="26">Medium</option>
+                <option value="17">Hardest (You will be waiting for a long time)</option>
+            </select>
+        </div>
+        <div class="SetupBlock form-check" style="grid-area: ForceUnique;">
+            <input type="checkbox" id="ForceUnique" class="form-check-input" title="Forces puzzles to only have one solution. Increases loading time drastically on difficulties greater than easy." checked>
+            <label for="ForceUnique" class="form-check-label" title="Forces puzzles to only have one solution. Increases loading time drastically on difficulties greater than easy.">Force Puzzles To Have A Unique Solution</label>
+        </div>
+        <div class="SetupBlock form-check" style="grid-area: Highlighting;">
+            <input type="checkbox" id="NumberHighlight" class="form-check-input">
+            <label for="NumberHighlight" class="form-check-label">Enable Highlighting Of Numbers</label>
+        </div>
+        <div class="SetupBlock form-check" style="grid-area: InvalidAnswers;">
+            <input type="checkbox" id="InvalidAnswers" class="form-check-input">
+            <label for="InvalidAnswers" class="form-check-label">Enable Lives (5 lives)</label>
+        </div>
+        <button id="BeginButton" onclick="BeginSoduku();" class="btn btn-lg btn-success" style="grid-area: Begin;">Begin Soduku!</button>
+        <div id="Spinner" class="spinner-border Spinner" role="status" style="display: none;">
+            <span class="sr-only">Loading...</span>
+        </div>
+    </div>
+    <div class="EndScreen" id="EndScreen" style="display: none;">
+        <h1 style="grid-area: Heading;" id="EndHeading">End Screen</h1>
+        <h5 style="grid-area: Time;" id="EndTime"></h5>
+        <h5 style="grid-area: Lives;" id="EndLives"></h5>
+        <button class="btn btn-success" style="grid-area: Restart;" onclick="Reset();">Do Another Soduku</button>
+    </div>
+</body>
+</html>
