@@ -13,6 +13,15 @@ html, body{
     color: white;
 }
 
+oldbrowser{
+    display: none;
+}
+
+noscript, oldbrowser{
+    font-size: 1.5em;
+    color: white;
+}
+
 .InfoWrapper{
     position: absolute;
     top: 0px;
@@ -231,6 +240,18 @@ html, body{
 
     .SetupBlock, .BeginPanel button, .SetupBlock select{
         width: 80%;
+    }
+
+}
+
+@supports not (display: grid){
+
+    #ContentWrapper{
+        display: none;
+    }
+
+    oldbrowser{
+        display: block;
     }
 
 }
