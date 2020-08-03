@@ -41,6 +41,7 @@ noscript, oldbrowser{
 }
 
 .Info{
+    z-index: 1;
     position: absolute;
     top: 0px;
     right: 0px;
@@ -53,6 +54,12 @@ noscript, oldbrowser{
     transition: clip-path 1s;
     padding: 0.5em;
     width: 30vw;
+    overflow: auto;
+}
+
+.Info p{
+    margin: 0;
+    padding: 0;
 }
 
 .InfoHover:hover .Info{
@@ -132,7 +139,7 @@ noscript, oldbrowser{
     width: 60vw;
     height: 60vh;
     padding: min(2vw, 2vh);
-    background-color: rgba(83, 83, 83, 0.925);
+    background-color: rgba(72, 72, 72, 0.925);
     display: grid;
 }
 
@@ -199,30 +206,6 @@ noscript, oldbrowser{
     background-color: rgb(255, 133, 133);;
 }
 
-@media screen and (max-width: 1200px){
-
-    .SodukuGrid{
-        width: 55vw;
-    }
-
-}
-
-@media screen and (max-width: 1000px){
-
-    .SodukuGrid{
-        width: 60vw;
-    }
-
-}
-
-@media screen and (max-width: 745px){
-
-    .SodukuGrid{
-        width: 90vw;
-    }
-
-}
-
 @media screen and (max-width: 1300px){
 
     .BeginPanel{
@@ -238,8 +221,66 @@ noscript, oldbrowser{
         grid-template-rows: 5fr 7fr 7fr 7fr 7fr 5fr;
     }
 
-    .SetupBlock, .BeginPanel button, .SetupBlock select{
+    .SetupBlock, .BeginPanel button, .EndScreen button, .SetupBlock select{
         width: 80%;
+    }
+
+}
+
+@media screen and (max-width: 1200px){
+
+    .Info{
+        width: 50vw;
+    }
+
+    .SodukuGrid{
+        width: 55vw;
+    }
+
+}
+
+@media screen and (max-width: 1024px){
+
+    .BeginPanel, .EndScreen{
+        left: 12.5vw;
+        top: 12.5vh;
+        width: 75vw;
+        height: 75vh;
+    }
+
+}
+
+@media screen and (max-width: 1000px){
+
+    .Info{
+        width: 70vw;
+    }
+
+    .SodukuGrid{
+        width: 60vw;
+    }
+
+}
+
+@media screen and (max-width: 745px){
+
+    .SodukuGrid{
+        width: 90vw;
+    }
+
+    .BeginPanel, .EndScreen{
+        left: 0;
+        top: 10vh;
+        width: 100vw;
+        height: 90vh;
+    }
+
+}
+
+@media screen and (max-width: 520px){
+
+    .Info{
+        width: calc(100vw - 2em);
     }
 
 }

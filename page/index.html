@@ -27,7 +27,13 @@
             <div class="InfoHover">
                 ?
                 <div class="Info">
-                    The rust webassembly version
+                    <p>
+                        The rust webassembly version.
+                    </p>
+                    <p>
+                        <a target="_blank" href="https://github.com/aaronboult/rust-webassembly-soduku">Learn more about the purpose of this project</a>
+                    </p>
+                    <a target="_blank" href="https://aaronboult.com/soduku/javascript">Javascript version</a>
                 </div>
             </div>
         </div>
@@ -35,30 +41,30 @@
             <h1>Soduku</h1>
         </div>
         <div class="SodukuGrid" id="SodukuGrid"></div>
-        <div id="Numberpad" class="Numberpad" style="display: none;">
-            <div onclick="Numberpad(event, 1);" style="grid-area: Key_1;">1</div>
-            <div onclick="Numberpad(event, 2);" style="grid-area: Key_2;">2</div>
-            <div onclick="Numberpad(event, 3);" style="grid-area: Key_3;">3</div>
-            <div onclick="Numberpad(event, 4);" style="grid-area: Key_4;">4</div>
-            <div onclick="Numberpad(event, 5);" style="grid-area: Key_5;">5</div>
-            <div onclick="Numberpad(event, 6);" style="grid-area: Key_6;">6</div>
-            <div onclick="Numberpad(event, 7);" style="grid-area: Key_7;">7</div>
-            <div onclick="Numberpad(event, 8);" style="grid-area: Key_8;">8</div>
-            <div onclick="Numberpad(event, 9);" style="grid-area: Key_9;">9</div>
+        <div id="numberpad" class="numberpad" style="display: none;">
+            <div onclick="numberpad(event, 1);" style="grid-area: Key_1;">1</div>
+            <div onclick="numberpad(event, 2);" style="grid-area: Key_2;">2</div>
+            <div onclick="numberpad(event, 3);" style="grid-area: Key_3;">3</div>
+            <div onclick="numberpad(event, 4);" style="grid-area: Key_4;">4</div>
+            <div onclick="numberpad(event, 5);" style="grid-area: Key_5;">5</div>
+            <div onclick="numberpad(event, 6);" style="grid-area: Key_6;">6</div>
+            <div onclick="numberpad(event, 7);" style="grid-area: Key_7;">7</div>
+            <div onclick="numberpad(event, 8);" style="grid-area: Key_8;">8</div>
+            <div onclick="numberpad(event, 9);" style="grid-area: Key_9;">9</div>
             <div style="grid-area: Blank;"></div>
-            <div id="NumpadClear" onclick="Numberpad(event, -1);" style="grid-area: Clear;">Clear</div>
-            <div id="NumpadEnter" onclick="Numberpad(event, -2);" style="grid-area: Enter;">Enter</div>
+            <div id="NumpadClear" onclick="numberpad(event, -1);" style="grid-area: Clear;">Clear</div>
+            <div id="NumpadEnter" onclick="numberpad(event, -2);" style="grid-area: Enter;">Enter</div>
         </div>
         <div class="BeginPanel" id="BeginPanel">
             <h1 style="grid-area: Heading;">Setup Panel</h1>
             <div class="SetupBlock" style="grid-area: Difficulty;">
                 <h5>Select Difficulty</h5>
                 <select id="Difficulty" class="form-control-lg">
-                    <option value="33">Very Very Easy</option>
-                    <option value="31">Very Easy</option>
-                    <option value="28">Easy</option>
-                    <option value="26">Medium</option>
-                    <option value="17">Hardest (You will be waiting for a long time)</option>
+                    <option value="34">Very Very Easy</option>
+                    <option value="32">Very Easy</option>
+                    <option value="29">Easy</option>
+                    <option value="27">Less Easy</option>
+                    <option value="16">Logically Impossible And May Never Generate</option>
                 </select>
             </div>
             <div class="SetupBlock form-check" style="grid-area: ForceUnique;">
@@ -73,7 +79,9 @@
                 <input type="checkbox" id="InvalidAnswers" class="form-check-input">
                 <label for="InvalidAnswers" class="form-check-label">Enable Lives (5 lives)</label>
             </div>
-            <button id="BeginButton" onclick="BeginSoduku();" class="btn btn-lg btn-success" style="grid-area: Begin;">Begin Soduku!</button>
+            <button id="BeginButton" onclick="beginSoduku();" class="btn btn-lg btn-success" style="grid-area: Begin;">
+                Begin Soduku!
+            </button>
             <div id="Spinner" class="spinner-border Spinner" role="status" style="display: none;">
                 <span class="sr-only">Loading...</span>
             </div>
@@ -82,7 +90,7 @@
             <h1 style="grid-area: Heading;" id="EndHeading">End Screen</h1>
             <h5 style="grid-area: Time;" id="EndTime"></h5>
             <h5 style="grid-area: Lives;" id="EndLives"></h5>
-            <button class="btn btn-success" style="grid-area: Restart;" onclick="Reset();">Do Another Soduku</button>
+            <button class="btn btn-success" style="grid-area: Restart;" onclick="reset();">Do Another Soduku</button>
         </div>
     </div>
 </body>
