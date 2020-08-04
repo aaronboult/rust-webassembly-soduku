@@ -62,6 +62,18 @@ noscript, oldbrowser{
     padding: 0;
 }
 
+.Info a, .Info a:link, .Info a:visited{
+    color: #9bedff;
+}
+
+.Info a:hover{
+    color: #7dcbdd;
+}
+
+.Info a:active{
+    color: #90def0;
+}
+
 .InfoHover:hover .Info{
     clip-path: circle(max(100vw, 100vh) at top right);
 }
@@ -280,7 +292,7 @@ noscript, oldbrowser{
 @media screen and (max-width: 520px){
 
     .Info{
-        width: calc(100vw - 2em);
+        width: calc(90vw - 2em);
     }
 
 }
