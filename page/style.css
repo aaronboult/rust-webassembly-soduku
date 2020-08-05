@@ -43,6 +43,7 @@ noscript, oldbrowser{
 .Info{
     z-index: 1;
     position: absolute;
+    cursor: default;
     top: 0px;
     right: 0px;
     margin-top: 2em;
@@ -72,6 +73,10 @@ noscript, oldbrowser{
 
 .Info a:active{
     color: #90def0;
+}
+
+.Info a:hover img{
+    opacity: 0.7;
 }
 
 .InfoHover:hover .Info{
