@@ -32,12 +32,12 @@ $(function(){
  */
 function generateGrid(){
 
-    $("#SodukuGrid").html("");
+    $("#soduku-grid").html("");
 
     for (let block = 0 ; block < 9 ; block++){
 
-        $("#SodukuGrid").append(
-            `<div style="grid-area: Block${block};" class="SodukuBlock" id="Block${block}">
+        $("#soduku-grid").append(
+            `<div style="grid-area: Block${block};" class="soduku-block" id="Block${block}">
             </div>`
         );
 
@@ -67,20 +67,20 @@ function beginSoduku(){
 
     $("html, body, .Cell").css("cursor", "progress");
 
-    $("#BeginButton").css("grid-area", "");
+    $("#begin-button").css("grid-area", "");
     
-    $("#BeginButton").css("display", "none");
+    $("#begin-button").css("display", "none");
 
-    $("#Spinner").css("display", "block");
+    $("#spinner").css("display", "block");
 
-    $("#Spinner").css("grid-area", "Begin");
+    $("#spinner").css("grid-area", "Begin");
 
     setTimeout(() => {
 
         startTime = Date.now(); // For timing generation
     
-        livesEnabled = $("#InvalidAnswers").is(":checked") && 
-            !$("#InvalidAnswers").prop("disabled");
+        livesEnabled = $("#invalid-answer").is(":checked") && 
+            !$("#invalid-answer").prop("disabled");
 
         if (livesEnabled){
 
@@ -88,67 +88,67 @@ function beginSoduku(){
 
         }
     
-        highlightingEnabled = $("#NumberHighlight").is(":checked");
+        highlightingEnabled = $("#number-highlight").is(":checked");
 
-        allowMultipleSolutions = !$("#ForceUnique").is(":checked") && 
-            !$("#ForceUnique").prop("disabled");
+        allowMultipleSolutions = !$("#force-unique").is(":checked") && 
+            !$("#force-unique").prop("disabled");
 
         let compressedData = generate_grid(
-            parseInt($("#Difficulty").val()), 
+            parseInt($("#difficulty").val()), 
             !allowMultipleSolutions
         );
             
         puzzle["grid"] = [];
-
+        
         puzzle["solutions"] = [];
-
+        
         let currentCell = 0;
-
+        
         for (let row = 0 ; row < 9 ; row++){
-
+        
             puzzle["grid"].push([]);
-
+        
             for (let col = 0 ; col < 9 ; col++){
-
+        
                 puzzle["grid"][row].push(compressedData[currentCell]);
-
+        
                 if (compressedData[currentCell] !== 0){
-
+        
                     $(`#Cell-${row}-${col}`).attr("enteredValue", compressedData[currentCell]);
-
+        
                     $(`#Cell-${row}-${col}`).html(compressedData[currentCell]);
-
+        
                     $(`#Cell-${row}-${col}`).attr("lockedCell", "true");
-
+        
                 }
-
+        
                 currentCell++;
-
+        
             }
-
+        
         }
-
+        
         for (let sol = 0 ; sol < Math.round(compressedData.length / 81) - 1 ; sol++){
-
+        
             puzzle["solutions"].push([]);
-
+        
             for (let row = 0 ; row < 9 ; row++){
-
+        
                 puzzle["solutions"][sol].push([]);
-
+        
                 for (let col = 0 ; col < 9 ; col++){
-
+        
                     puzzle["solutions"][sol][row].push(compressedData[currentCell]);
-
+        
                     currentCell++;
-
+        
                 }
-
+        
             }
-
+        
         }
     
-        $(".BeginPanel").css("display", "none");
+        $("#begin-panel").css("display", "none");
     
         $("html, body, .Cell").css("cursor", "default");
 
@@ -156,9 +156,9 @@ function beginSoduku(){
             `Generation took -> ${getTimeTaken()}`
         );
 
-        $(".SodukuBlock div").each(function(){
+        $(".soduku-block div").each(function(){
 
-            $(this).addClass("SodukuCell")
+            $(this).addClass("soduku-cell")
 
             $(this).on("click", onCellClick);
 
@@ -227,7 +227,7 @@ function onCellClick(event){
 
             }
 
-            $(this).addClass("SelectedCell");
+            $(this).addClass("selected-cell");
 
             $("#numberpad").css("display", "grid");
 
@@ -266,13 +266,13 @@ function onKeydown(event){
 
                 case 8:
 
-                    $("#NumpadClear").click();
+                    $("#numberpad-clear").click();
 
                     break;
                 
                 case 13:
 
-                    $("#NumpadEnter").click();
+                    $("#numberpad-enter").click();
 
                     break;
 
@@ -642,7 +642,7 @@ function numberpad(event, value){
                 
                     $(`#${focusedCellID}`).attr("tempValue", "-1");
 
-                    $(`#${focusedCellID}`).removeClass("Incorrect");
+                    $(`#${focusedCellID}`).removeClass("incorrect");
 
                     if (livesEnabled){
 
@@ -677,7 +677,7 @@ function highlightAssociatedCells(){
 
         if (this.id !== focusedCellID || locked){
 
-            $(this).addClass("Highlighted");
+            $(this).addClass("highlighted");
 
         }
 
@@ -690,9 +690,9 @@ function highlightAssociatedCells(){
  */
 function clearHighlight(){
 
-    $(".Highlighted").each(function(){
+    $(".highlighted").each(function(){
 
-        $(this).removeClass("Highlighted");
+        $(this).removeClass("highlighted");
 
     });
 
@@ -721,7 +721,7 @@ function clearSelectedCell(){
 
     $(`#${focusedCellID}`).attr("tempValue", "-1");
 
-    $(`#${focusedCellID}`).removeClass("SelectedCell");
+    $(`#${focusedCellID}`).removeClass("selected-cell");
 
     $("#numberpad").css("display", "none");
 
@@ -804,7 +804,7 @@ function checkAnswerValidity(){
 
         }
 
-        $(`#${focusedCellID}`).addClass("Incorrect");
+        $(`#${focusedCellID}`).addClass("incorrect");
 
     }
 
@@ -815,9 +815,9 @@ function checkAnswerValidity(){
  */
 function disabledGrid(){
 
-    $(".SodukuBlock div").each(function(){
+    $(".soduku-block div").each(function(){
 
-        $(this).removeClass("SodukuCell")
+        $(this).removeClass("soduku-cell")
 
         $(this).unbind("click");
 
@@ -837,35 +837,35 @@ function displayEndScreen(success){
 
     disabledGrid();
 
-    $("#EndScreen").css("display", "grid");
+    $("#end-screen").css("display", "grid");
 
-    $("#EndTime").html(
+    $("#end-time").html(
         `Solving For: ${getTimeTaken()}`
     );
 
     if (livesEnabled && puzzle["lives"] !== 0){
 
-        $("#EndLives").html(
+        $("#end-lives").html(
             `Lives Remaining: ${puzzle["lives"]}`
         );
 
     }
     else{
 
-        $("#EndLives").css("display", "none");
+        $("#end-lives").css("display", "none");
 
     }
 
     if (success){
 
-        $("#Heading").html(
+        $("#end-heading").html(
             "Congratulations, you solved it!"
         );
 
     }
     else{
 
-        $("#Heading").html(
+        $("#end-heading").html(
             "Sometimes things just don't go our way, but that doesn't mean we should give up!"
         );
 
@@ -878,17 +878,17 @@ function displayEndScreen(success){
  */
 function reset(){
 
-    $("#EndScreen").css("display", "none");
+    $("#end-screen").css("display", "none");
 
-    $("#BeginPanel").css("display", "grid");
+    $("#begin-panel").css("display", "grid");
 
-    $("#BeginButton").css("grid-area", "Begin");
+    $("#begin-button").css("grid-area", "Begin");
     
-    $("#BeginButton").css("display", "block");
+    $("#begin-button").css("display", "block");
 
-    $("#Spinner").css("display", "none");
+    $("#spinner").css("display", "none");
 
-    $("#Spinner").css("grid-area", "");
+    $("#spinner").css("grid-area", "");
 
     generateGrid();
 

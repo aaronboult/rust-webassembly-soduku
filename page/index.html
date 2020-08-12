@@ -19,16 +19,16 @@
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
     <title>Soduku</title>
 </head>
-<body onload="document.getElementById('ContentWrapper').style.display = 'block'">
+<body onload="document.getElementById('content-wrapper').style.display = 'block'">
     <noscript>Please enable javascript</noscript>
     <oldbrowser>Please, use a modern browser.</oldbrowser>
-    <div style="display: none;width: 100vw;height: 100vh;" id="ContentWrapper">
-        <div class="InfoWrapper">
-            <div class="InfoHover">
+    <div style="display: none;width: 100vw;height: 100vh;" id="content-wrapper">
+        <div id="info-wrapper">
+            <div id="info-hover">
                 ?
-                <div class="Info">
+                <div id="info">
                     <p>
-                        The rust webassembly version.
+                        The webassembly version.
                     </p>
                     <p>
                         <a target="_blank" href="https://github.com/aaronboult/rust-webassembly-soduku">
@@ -42,8 +42,8 @@
         <div style="height: 10vh;">
             <h1>Soduku</h1>
         </div>
-        <div class="SodukuGrid" id="SodukuGrid"></div>
-        <div id="numberpad" class="numberpad" style="display: none;">
+        <div id="soduku-grid"></div>
+        <div id="numberpad" style="display: none;">
             <div onclick="numberpad(event, 1);" style="grid-area: Key_1;">1</div>
             <div onclick="numberpad(event, 2);" style="grid-area: Key_2;">2</div>
             <div onclick="numberpad(event, 3);" style="grid-area: Key_3;">3</div>
@@ -54,14 +54,14 @@
             <div onclick="numberpad(event, 8);" style="grid-area: Key_8;">8</div>
             <div onclick="numberpad(event, 9);" style="grid-area: Key_9;">9</div>
             <div style="grid-area: Blank;"></div>
-            <div id="NumpadClear" onclick="numberpad(event, -1);" style="grid-area: Clear;">Clear</div>
-            <div id="NumpadEnter" onclick="numberpad(event, -2);" style="grid-area: Enter;">Enter</div>
+            <div id="numberpad-clear" onclick="numberpad(event, -1);" style="grid-area: Clear;">Clear</div>
+            <div id="numberpad-enter" onclick="numberpad(event, -2);" style="grid-area: Enter;">Enter</div>
         </div>
-        <div class="BeginPanel" id="BeginPanel">
+        <div id="begin-panel">
             <h1 style="grid-area: Heading;">Setup Panel</h1>
-            <div class="SetupBlock" style="grid-area: Difficulty;">
+            <div class="setup-block" style="grid-area: Difficulty;">
                 <h5>Select Difficulty</h5>
-                <select id="Difficulty" class="form-control-lg">
+                <select id="difficulty" class="form-control-lg">
                     <option value="34">Very Very Easy</option>
                     <option value="32">Very Easy</option>
                     <option value="29">Easy</option>
@@ -69,29 +69,29 @@
                     <option value="16">Logically Impossible And May Never Generate</option>
                 </select>
             </div>
-            <div class="SetupBlock form-check" style="grid-area: ForceUnique;">
-                <input type="checkbox" id="ForceUnique" class="form-check-input" title="Forces puzzles to only have one solution. Increases loading time drastically on difficulties greater than easy." checked>
-                <label for="ForceUnique" class="form-check-label" title="Forces puzzles to only have one solution. Increases loading time drastically on difficulties greater than easy.">Force Puzzles To Have A Unique Solution</label>
+            <div class="setup-block form-check" style="grid-area: ForceUnique;">
+                <input type="checkbox" id="force-unique" class="form-check-input" title="Forces puzzles to only have one solution. Increases loading time drastically on difficulties greater than easy." checked>
+                <label for="force-unique" class="form-check-label" title="Forces puzzles to only have one solution. Increases loading time drastically on difficulties greater than easy.">Force Puzzles To Have A Unique Solution</label>
             </div>
-            <div class="SetupBlock form-check" style="grid-area: Highlighting;">
-                <input type="checkbox" id="NumberHighlight" class="form-check-input">
-                <label for="NumberHighlight" class="form-check-label">Enable Highlighting Of Numbers</label>
+            <div class="setup-block form-check" style="grid-area: Highlighting;">
+                <input type="checkbox" id="number-highlight" class="form-check-input">
+                <label for="number-highlight" class="form-check-label">Enable Highlighting Of Numbers</label>
             </div>
-            <div class="SetupBlock form-check" style="grid-area: InvalidAnswers;">
-                <input type="checkbox" id="InvalidAnswers" class="form-check-input">
-                <label for="InvalidAnswers" class="form-check-label">Enable Lives (5 lives)</label>
+            <div class="setup-block form-check" style="grid-area: InvalidAnswers;">
+                <input type="checkbox" id="invalid-answer" class="form-check-input">
+                <label for="invalid-answer" class="form-check-label">Enable Lives (5 lives)</label>
             </div>
-            <button id="BeginButton" onclick="beginSoduku();" class="btn btn-lg btn-success" style="grid-area: Begin;">
+            <button id="begin-button" onclick="beginSoduku();" class="btn btn-lg btn-success" style="grid-area: Begin;">
                 Begin Soduku!
             </button>
-            <div id="Spinner" class="spinner-border Spinner" role="status" style="display: none;">
+            <div id="spinner" class="spinner-border spinner" role="status" style="display: none;">
                 <span class="sr-only">Loading...</span>
             </div>
         </div>
-        <div class="EndScreen" id="EndScreen" style="display: none;">
-            <h1 style="grid-area: Heading;" id="EndHeading">End Screen</h1>
-            <h5 style="grid-area: Time;" id="EndTime"></h5>
-            <h5 style="grid-area: Lives;" id="EndLives"></h5>
+        <div id="end-screen" style="display: none;">
+            <h1 style="grid-area: Heading;" id="end-heading">End Screen</h1>
+            <h5 style="grid-area: Time;" id="end-time"></h5>
+            <h5 style="grid-area: Lives;" id="end-lives"></h5>
             <button class="btn btn-success" style="grid-area: Restart;" onclick="reset();">Do Another Soduku</button>
         </div>
     </div>

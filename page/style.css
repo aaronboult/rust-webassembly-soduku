@@ -22,13 +22,13 @@ noscript, oldbrowser{
     color: white;
 }
 
-.InfoWrapper{
+#info-wrapper{
     position: absolute;
     top: 0px;
     right: 0px;
 }
 
-.InfoHover{
+#info-hover{
     border: 1px solid black;
     border-radius: 100%;
     background-color: #545454;
@@ -40,7 +40,7 @@ noscript, oldbrowser{
     height: 2em;
 }
 
-.Info{
+#info{
     z-index: 1;
     position: absolute;
     cursor: default;
@@ -58,32 +58,32 @@ noscript, oldbrowser{
     overflow: auto;
 }
 
-.Info p{
+#info p{
     margin: 0;
     padding: 0;
 }
 
-.Info a, .Info a:link, .Info a:visited{
+#info a, #info a:link, #info a:visited{
     color: #9bedff;
 }
 
-.Info a:hover{
+#info a:hover{
     color: #7dcbdd;
 }
 
-.Info a:active{
+#info a:active{
     color: #90def0;
 }
 
-.Info a:hover img{
+#info a:hover img{
     opacity: 0.7;
 }
 
-.InfoHover:hover .Info{
+#info-hover:hover #info{
     clip-path: circle(max(100vw, 100vh) at top right);
 }
 
-.SodukuGrid{
+#soduku-grid{
     width: 50vw;
     height: 63vh;
     margin: auto;
@@ -97,7 +97,7 @@ noscript, oldbrowser{
     grid-template-rows: 1fr 1fr 1fr;
 }
 
-.SodukuBlock{
+.soduku-block{
     border: 2px solid black;
     border-collapse: collapse;
     display: grid;
@@ -108,7 +108,7 @@ noscript, oldbrowser{
     grid-template-rows: 1fr 1fr 1fr;
 }
 
-.SodukuBlock div{
+.soduku-block div{
     border: 1px solid black;
     border-collapse: collapse;
     line-height: 6vh;
@@ -116,12 +116,12 @@ noscript, oldbrowser{
     font-weight: 600;
 }
 
-.SodukuCell:hover:not([lockedCell="true"]){
+.soduku-cell:hover:not([lockedCell="true"]){
     background-color: rgb(231, 231, 231);
     cursor: pointer;
 }
 
-.Numberpad{
+#numberpad{
     height: 20vh;
     width: 80vw;
     overflow: auto;
@@ -137,7 +137,7 @@ noscript, oldbrowser{
                         "Clear Blank Enter";
 }
 
-.Numberpad div{
+#numberpad div{
     border: 1px solid black;
     border-collapse: collapse;
     line-height: calc(5vh - 4px);
@@ -147,7 +147,7 @@ noscript, oldbrowser{
     font-weight: 600;
 }
 
-.BeginPanel, .EndScreen{
+#begin-panel, #end-screen{
     position: fixed;
     color: white;
     overflow: auto;
@@ -160,7 +160,7 @@ noscript, oldbrowser{
     display: grid;
 }
 
-.EndScreen{
+#end-screen{
     grid-template-areas: "Heading Heading Heading"
                         "Time Blank Lives"
                         "Restart Restart Restart";
@@ -168,11 +168,11 @@ noscript, oldbrowser{
     grid-template-rows: 8fr 5fr 5fr 8fr;
 }
 
-.EndScreen button{
+#end-screen button{
     height: 3.5em;
 }
 
-.BeginPanel{
+#begin-panel{
     grid-template-areas: "Heading Heading Heading"
                         "Difficulty Difficulty ForceUnique"
                         "InvalidAnswers Blank1 Highlighting"
@@ -181,51 +181,51 @@ noscript, oldbrowser{
     grid-template-rows: 5fr 10fr 10fr 5fr;
 }
 
-.BeginPanel *, .EndScreen *{
+#begin-panel *, #end-screen *{
     margin-bottom: min(2vw, 2vh);
     font-size: 1.2em;
 }
 
-.BeginPanel h1, .EndScreen h1{
+#begin-panel h1, #end-screen h1{
     font-size: 2.4em;
 }
 
-.SetupBlock, .BeginPanel button, .EndScreen button, .SetupBlock select{
+.setup-block, #begin-panel button, #end-screen button, .setup-block select{
     width: 70%;
     margin: auto;
     display: block;
 }
 
-.SetupBlock input[type="checkbox"]{
+.setup-block input[type="checkbox"]{
     width: 0.8em;
     height: 0.8em;
     margin-left: -2rem;
 }
 
-.Spinner{
+.spinner{
     font-size: 1.2em;
     margin: auto;
     width: 3em;
     height: 3em;
 }
 
-.Highlighted{
+.highlighted{
     background-color: aqua !important;
     color: black;
 }
 
-.SelectedCell{
+.selected-cell{
     background-color: rgb(255, 255, 126) !important;
     color: black;
 }
 
-.Incorrect{
+.incorrect{
     background-color: rgb(255, 133, 133);;
 }
 
 @media screen and (max-width: 1300px){
 
-    .BeginPanel{
+    #begin-panel{
         width: 80vw;
         left: 10vw;
         grid-template-areas: "Heading"
@@ -238,7 +238,7 @@ noscript, oldbrowser{
         grid-template-rows: 5fr 7fr 7fr 7fr 7fr 5fr;
     }
 
-    .SetupBlock, .BeginPanel button, .EndScreen button, .SetupBlock select{
+    .setup-block, #begin-panel button, #end-screen button, .setup-block select{
         width: 80%;
     }
 
@@ -246,11 +246,11 @@ noscript, oldbrowser{
 
 @media screen and (max-width: 1200px){
 
-    .Info{
+    #info{
         width: 50vw;
     }
 
-    .SodukuGrid{
+    #soduku-grid{
         width: 55vw;
     }
 
@@ -258,7 +258,7 @@ noscript, oldbrowser{
 
 @media screen and (max-width: 1024px){
 
-    .BeginPanel, .EndScreen{
+    #begin-panel, #end-screen{
         left: 12.5vw;
         top: 12.5vh;
         width: 75vw;
@@ -269,11 +269,11 @@ noscript, oldbrowser{
 
 @media screen and (max-width: 1000px){
 
-    .Info{
+    #info{
         width: 70vw;
     }
 
-    .SodukuGrid{
+    #soduku-grid{
         width: 60vw;
     }
 
@@ -281,11 +281,11 @@ noscript, oldbrowser{
 
 @media screen and (max-width: 745px){
 
-    .SodukuGrid{
+    #soduku-grid{
         width: 90vw;
     }
 
-    .BeginPanel, .EndScreen{
+    #begin-panel, #end-screen{
         left: 0;
         top: 10vh;
         width: 100vw;
@@ -296,7 +296,7 @@ noscript, oldbrowser{
 
 @media screen and (max-width: 520px){
 
-    .Info{
+    #info{
         width: calc(90vw - 2em);
     }
 
@@ -304,7 +304,7 @@ noscript, oldbrowser{
 
 @supports not (display: grid){
 
-    #ContentWrapper{
+    #content-wrapper{
         display: none;
     }
 
